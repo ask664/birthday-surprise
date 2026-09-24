@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday.exe 🎂</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #292342, #090910 70%);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow-x: hidden;
+}
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+}
+
+.start-card {
+    text-align: center;
+    max-width: 550px;
+}
+
+.start-emoji {
+    font-size: 75px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    opacity: 0.8;
+    line-height: 1.7;
+}
+
+button {
+    margin-top: 25px;
+    padding: 15px 27px;
+    border: 0;
+    border-radius: 30px;
+    font-size: 17px;
+    cursor: pointer;
+    background: white;
+    color: #111;
+    font-weight: 700;
+}
+
+button:hover {
+    transform: scale(1.04);
+}
+
+button:active {
+    transform: scale(.97);
+}
+
+/* TERMINAL */
+
+#terminalScreen,
+#birthdayScreen {
+    display: none;
+}
+
+.terminal {
+    width: min(720px, 100%);
+    background: #101015;
+    border: 1px solid #333;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 70px rgba(0,0,0,.5);
+}
+
+.terminal-header {
+    background: #202027;
+    padding: 12px 15px;
+    font-family: monospace;
+}
+
+.terminal-body {
+    padding: 25px;
+    min-height: 430px;
+    font-family: "Courier New", monospace;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.line {
+    margin: 5px 0;
+}
+
+/* BIRTHDAY CARD */
+
+.birthday-card {
+    width: min(680px, 100%);
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16);
+    backdrop-filter: blur(15px);
+    padding: 32px 25px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 25px 80px rgba(0,0,0,.4);
+}
+
+.cake {
+    font-size: 80px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.message {
+    text-align: left;
+    line-height: 1.85;
+    margin-top: 28px;
+    font-size: 17px;
+}
+
+.code {
+    background: rgba(0,0,0,.35);
+    padding: 18px;
+    border-radius: 12px;
+    font-family: monospace;
+    text-align: left;
+    line-height: 1.8;
+    margin: 25px 0;
+    overflow-x: auto;
+}
+
+.final-message {
+    display: none;
+    margin-top: 25px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,.2);
+    line-height: 1.8;
+    animation: fade .8s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CONFETTI */
+
+.confetti {
+    position: fixed;
+    top: -30px;
+    font-size: 22px;
+    animation: fall linear forwards;
+    z-index: 100;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+.footer {
+    margin-top: 30px;
+    opacity: .55;
+    font-size: 13px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- START SCREEN -->
+
+<section class="screen" id="startScreen">
+
+<div class="start-card">
+
+    <div class="start-emoji">
+        👨‍💻🎂🏋️‍♀️
+    </div>
+
+    <h1>Birthday.exe</h1>
+
+    <p class="subtitle">
+        A Software Engineer tried to compile a birthday wish
+        for his favourite Gym Partner... 😄
+        <br><br>
+        Let's see if the build passes. 😂
+    </p>
+
+    <button onclick="runProgram()">
+        ▶ Run Birthday.exe
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- TERMINAL SCREEN -->
+
+<section class="screen" id="terminalScreen">
+
+<div class="terminal">
+
+    <div class="terminal-header">
+        ● ● ● &nbsp;&nbsp; birthday.py
+    </div>
+
+    <div class="terminal-body" id="terminal">
+
+        <div class="line">
+            $ python birthday.py
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- BIRTHDAY SCREEN -->
+
+<section class="screen" id="birthdayScreen">
+
+<div class="birthday-card">
+
+    <div class="cake">
+        🎂
+    </div>
+
+    <h1>
+        Happy Birthday! 🎉🥳
+    </h1>
+
+    <p>
+        ✓ BUILD SUCCESSFUL
+    </p>
+
+
+    <!-- FUN CODE -->
+
+    <div class="code">
+
+friend = True 🤝<br>
+gym_partner = True 🏋️‍♀️<br><br>
+
+beautiful = True ✨<br>
+charming = True 😄<br>
+full_of_joy = True 🥳<br>
+thodi_si_pagal = True 😂<br><br>
+
+official_age = 18 🙈<br>
+real_age = "ACCESS DENIED" 🔐😂<br><br>
+
+happiness = float("inf") ♾️<br>
+good_health = True 💪<br>
+crazy_memories = True 🎉<br><br>
+
+cheat_meals = "UNLIMITED" 🍕🍰<br>
+calories_gained = 0 😂
+
+    </div>
+
+
+
+    <!-- MAIN MESSAGE -->
+
+    <div class="message">
+
+        <p>
+            <b>
+            Happy Birthday to my favourite Gym Partner! 🎂🏋️‍♀️😄
+            </b>
+        </p>
+
+        <p>
+            Always stay the same —
+            <b>beautiful, charming, full of joy</b>...
+            aur thodi si pagal bhi 😜😂
+        </p>
+
+        <p>
+            May this year bring you lots of happiness,
+            good health, crazy memories, more strength 💪
+            and obviously...
+        </p>
+
+        <p style="text-align:center; font-size:20px;">
+            <b>
+            Unlimited cheat meals without gaining
+            a single calorie! 😂🍕🎂
+            </b>
+        </p>
+
+        <p>
+            Keep smiling, keep shining,
+            and keep spreading those positive vibes! ✨
+        </p>
+
+        <p>
+            Aur haan...
+            <b>age is just a number</b>,
+            so iss baar bhi officially
+            <b>18 hi bolenge</b> 😂🙈
+        </p>
+
+        <p>
+            Baaki documents kya kehte hain...
+            <b>woh unki problem hai!</b> 🤣
+        </p>
+
+    </div>
+
+
+    <button onclick="showSecret()">
+        One Last Birthday Update 🎁
+    </button>
+
+
+    <!-- FINAL MESSAGE -->
+
+    <div class="final-message" id="secret">
+
+        <h2>
+            System Update Available... 😂
+        </h2>
+
+        <div class="code">
+
+Version: 18.0 😂<br>
+Previous bugs: ignored 😎<br>
+Happiness patch: installed ✅<br>
+Strength upgrade: installed 💪<br>
+Smile package: updated 😊<br>
+Cheat meal protection: enabled 🍕<br><br>
+
+Status: READY FOR ANOTHER AMAZING YEAR 🎉
+
+        </div>
+
+        <p>
+            Jokes apart... 😄
+        </p>
+
+        <p>
+            I'm genuinely happy to have such a
+            joyful and positive person as a friend
+            and Gym Partner. 🤝🏋️‍♀️
+        </p>
+
+        <p>
+            Stay happy, stay healthy,
+            keep smiling and keep being exactly
+            the person you are. ✨
+        </p>
+
+        <h2>
+            Happy Birthday Once Again! 🎂🥳
+        </h2>
+
+        <p>
+            Have an amazing day,
+            <b>Gym Partner!</b> 🏋️‍♀️🤝❤️
+        </p>
+
+    </div>
+
+
+    <div class="footer">
+        Compiled with ☕ + code + friendship 😄
+    </div>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+const terminalLines = [
+
+    "🔍 Searching database...",
+
+    "✓ Birthday Girl found 🎂",
+
+    "✓ Gym Partner detected 🏋️‍♀️",
+
+    "✓ Beautiful = True ✨",
+
+    "✓ Charming = True 😄",
+
+    "✓ Full_of_Joy = True 🥳",
+
+    "⚠ Checking age...",
+
+    "🔐 Real age protected by privacy settings 😂",
+
+    "✓ Setting official_age = 18 🙈",
+
+    "",
+
+    "🏋️ Installing Strength Upgrade...",
+
+    "😊 Installing Unlimited Smiles...",
+
+    "🍕 Enabling Cheat Meal Protection...",
+
+    "😂 Removing Calories...",
+
+    "",
+
+    "Compiling Birthday Wishes...",
+
+    "████████████████████ 100%",
+
+    "",
+
+    "✓ BUILD SUCCESSFUL 🎂🎉"
+
+];
+
+
+function runProgram() {
+
+    document.getElementById("startScreen").style.display = "none";
+
+    document.getElementById("terminalScreen").style.display = "flex";
+
+
+    const terminal =
+        document.getElementById("terminal");
+
+
+    let i = 0;
+
+
+    const interval = setInterval(() => {
+
+        if (i < terminalLines.length) {
+
+            const div =
+                document.createElement("div");
+
+            div.className = "line";
+
+            div.textContent =
+                terminalLines[i];
+
+            terminal.appendChild(div);
+
+            i++;
+
+        }
+
+        else {
+
+            clearInterval(interval);
+
+            setTimeout(() => {
+
+                document.getElementById(
+                    "terminalScreen"
+                ).style.display = "none";
+
+
+                document.getElementById(
+                    "birthdayScreen"
+                ).style.display = "flex";
+
+
+                confetti();
+
+            }, 800);
+
+        }
+
+    }, 380);
+
+}
+
+
+
+function showSecret() {
+
+    document.getElementById(
+        "secret"
+    ).style.display = "block";
+
+
+    confetti();
+
+
+    setTimeout(() => {
+
+        document.getElementById(
+            "secret"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }, 200);
+
+}
+
+
+
+function confetti() {
+
+    const symbols = [
+        "🎉",
+        "✨",
+        "🎂",
+        "🥳",
+        "💪",
+        "😂",
+        "❤️"
+    ];
+
+
+    for (let i = 0; i < 55; i++) {
+
+        const piece =
+            document.createElement("div");
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.innerText =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+
+        piece.style.animationDelay =
+            Math.random() + "s";
+
+
+        document.body.appendChild(piece);
+
+
+        setTimeout(
+            () => piece.remove(),
+            6000
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
